@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!--Discussion thread-->
+<div class="container-lg">
+    <h1 class="h1"> Discussions </h1>
+    <div class="container">
+        <br>
+        <form action="/" method="POST">
+            <input type="text" placeholder="Thread Title" name="title" required="true">
+            <input type="text" placeholder="Thread Content" name="content" required="true">
+            <input type="submit" value="Create" class="btn btn-primary" >
+        </form>
+    </div> 
+</div>
+    {% for item in discussions.query.all() %}
+
+    <div class="container text-center border border-dark">
+        <div class="row">
+            <div class="col">
+                <h2><a class="badge bg-primary text-wrap" href="{{url_for('discussionPage', localDiscussion=item.id)}}">{{ item.postTitle }}</a></h2>
+            </div>
+            <div class="col">
+                <p>{{ item.postContent }}</p>
+            </div>
+            <div class="col">
+                <span>{{ item.discPosts|length }} post(s)</span>
+            </div>
+            <div class="col">
+                Thread made by {{ users.query.get(item.userThread).name}}
+                <br>
+                at <small>{{ item.date_created }}</small>
+            </div>
+            <div class="col">
+                <a href="{{url_for('deletediscussion', pid=item.id)}}" class="btn btn-danger" role="button">Delete Post</a>
+            </div>
+        </div>
+    </div> 
+    {% endfor %}   
+</div>
+
+{% endblock %}

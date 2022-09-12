@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container-lg">
+        <h1 class="h1"> {{curdisc.postTitle}} </h1>
+        <div class="container">
+            <br>
+            <form action="{{url}}" method="POST">
+                <input type="text" placeholder="Post Title" name="title" required="true">
+                <input type="text" placeholder="Post Content" name="content" required="true">
+                <input type="submit" value="Post" class="btn btn-primary">
+            </form>
+        </div> 
+    </div>
+    {% for item in discussions %}
+
+    <div class="container text-center border border-dark">
+        <div class="row">
+            <div class="col">
+                <h2><a class="badge bg-primary text-wrap" href="{{url_for('postPage', localDiscussion=localDiscussion, localPost=item.id)}}">{{ item.postTitle }}</a></h2>
+            </div>
+            <div class="col">
+                <p>{{ item.postContent }}</p>
+            </div>
+            <div class="col">
+                <span>{{ item.postComments|length }} comment(s)</span>
+            </div>
+            <div class="col">
+                Thread made by {{ users.query.get(item.userPost).name}}
+                <br>
+                on <small>{{ item.date_created }}</small>
+            </div>
+            <div class="col">
+                <a href="{{url_for('deletePost', pid=item.id)}}" class="btn btn-danger" role="button">Delete Post</a>
+            </div>
+        </div>
+    </div> 
+    {% endfor %}  
+{% endblock %}

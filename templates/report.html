@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<p>
+{% if not (badnum and badlen and badup and badnum) %}
+Bad Password, account not saved.
+{% endif %}
+</p>
+<br>
+<p>
+{% if (not badlen) %}
+Needs More Characters
+{% endif %}
+</p>
+<br>
+<p>
+{% if (not badlow) %}
+Needs a lowercase
+{% endif %}
+</p>
+<br>
+<p>
+{% if (not badup) %}
+Needs an uppercase
+{% endif %}
+</p>
+<br>
+<p>
+{% if (not badnum) %}
+Needs a number at the end
+{% endif %}
+</p>
+<br>
+<p>
+{% if (badnum and badlen and badup and badnum) %}
+Account Saved!
+{% endif %}
+</p>
+</div>
+{% endblock %}

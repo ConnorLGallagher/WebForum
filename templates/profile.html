@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Create Account</h1>
+
+    <br>
+    <h5 class="h5">Requiements:</h5>
+    <p>Usename can't be in use - (If in use you will be redirected to sign in page)</p>
+    <p>Password needs 8 characters</p>
+    <p>An ending number</p>
+    <p>A lower case</p>
+    <p>An uppercase</p>
+    <br>
+
+    <form action="/profile" method="POST" role="form">
+        <input class="form-control" type="text" placeholder="Name" name="name" required="true">
+        <input class="form-control" type="text" placeholder="password" name="password" required="true">
+        <input type="submit" value="Add User" class="btn btn-primary">
+    </form>
+    
+</div>
+{% endblock %}
